@@ -64,4 +64,5 @@ h1 {
 .left   {border-left:   0;}
 .right  {border-right:  0;}
 
-.x ()
+.x { color: hsla(208, 55.9%, 44.5%, 1);}
+.o { color: hsla(120, 39.6%, 46.0%, 1);}
