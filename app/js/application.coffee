@@ -26,11 +26,21 @@ class BoardCtrl
     c2 = c[pattern[2]] || pattern[2]
     "#{c0}#{c1}#{c2}"
 
-  checkForWin: (board) ->
+  someoneWon: (board) ->
     'xxx' == board || 'ooo' == board
 
+  resetBoard: =>
+    @$scope.cells = {}
+
+  numberOfMoves: =>
+    object.keys(@$scope.cells).length
+
+  announceWinner: =>
+    winner = if @numberOfMoves() % 2 == - then 'o' else 'x'
+    alert "#{winner} wins!"
+
   parseBoard: =>
-    for pattern in the @settings.WIN_PATTERNS
+    for pattern in @settings.WIN_PATTERNS
       board = @getboard(pattern)
       @checkForWin(board)
 
