@@ -29,6 +29,9 @@ $ ->
     $('#gameboard').hide()
     $('#start-game').fadeIn(500)
 
+  getBoard = ->
+    ( $('.board-cell').map (idx, el) -> $(el).text() ).get()
+
   checkForWin = (cell) ->
     win = ''
     board = ( $('.board-cell').map (idx, el) -> $(el).text() ).get()
@@ -41,12 +44,28 @@ $ ->
     if win != ''
       alert win + ' won!'
       resetGame()
+    else if counter > 8
+      alert 'Tie game!'
+      resetGame()
+
+  checkForTie = ->
+    remainPatterns = WIN_PATTERNS
+    voidedCounter = 0
+    for p in remainPatterns
+      board = getBoard()
+      pattern = [board[p[0]],board[p[1]],board[p[2]]]
+      if ('o' in pattern) and ('x' in pattern) then voidedCounter++
+    if voidedCounter == 8
+      alert 'No chance of winning, asshats'
+      resetGame()
 
   markCell = (cell, mark) ->
     cell.text mark
     cell.addClass mark
     counter += 1
     checkForWin( getCellNumber(cell) ) if counter > 4
+    checkForTie()
+
 
   # Handle start game clicks
   $('#start-game').on 'click', (e) ->
