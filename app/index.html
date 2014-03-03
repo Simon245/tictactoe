@@ -12,7 +12,7 @@
       </h1>
     </header>
     <main role="main" data-ng-controller="BoardCtrl">
-      <section id="gameboard" class="board">
+      <section id="gameboard" class="board ng-cloak">
         <div id="row-0" class="board-row">
           <div id="cell-0" data-index="0" data-ng-click="mark($event)" class="board-cell top left {{cells.0}} {{winningCells.0}}">{{cells.0}}</div>
           <div id="cell-1" data-index="1" data-ng-click="mark($event)" class="board-cell top center {{cells.1}} {{winningCells.1}}">{{cells.1}}</div>
