@@ -52,7 +52,11 @@
       }
       this.id = this.uniqueId();
       this.dbRef = new Firebase("https://tictactoe-simon.firebaseio.com/" + this.id);
-      this.db = this.$firebase(this.dbRef);
+      this.db = this.$firebase(this.dbRef.child('board'));
+      this.playersRef = this.dbRef.child('players');
+      this.playersRef.set({
+        player1: "Simon"
+      });
       return this.db.$bind(this.$scope, 'cells').then((function(_this) {
         return function(unbind) {
           _this.unbind = unbind;

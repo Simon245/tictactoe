@@ -31,7 +31,9 @@ class BoardCtrl
     @unbind() if @unbind
     @id = @uniqueId()
     @dbRef = new Firebase "https://tictactoe-simon.firebaseio.com/#{@id}"
-    @db = @$firebase @dbRef
+    @db = @$firebase @dbRef.child ('board')
+    @playersRef = @dbRef.child ('players') # new Firebase "https://tictactoe-simon.firebaseio.com/#{@id}/players"
+    @playersRef.set {player1:"Simon"}
     @db.$bind( @$scope, 'cells' ).then (unbind) =>
       @unbind = unbind
       @$scope.gameOn = true
