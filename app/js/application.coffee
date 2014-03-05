@@ -29,11 +29,11 @@ class BoardCtrl
   startGame: =>
     @resetBoard()
     @unbind() if @unbind
-    @id = @uniqueId()
+    @id = @uniqueId() console.log
     @dbRef = new Firebase "https://tictactoe-simon.firebaseio.com/#{@id}"
     @db = @$firebase @dbRef.child ('board')
     @playersRef = @dbRef.child ('players') # new Firebase "https://tictactoe-simon.firebaseio.com/#{@id}/players"
-    @playersRef.set {player1:"Simon"}
+    # @playersRef.set {player1:"Simon"}
     @db.$bind( @$scope, 'cells' ).then (unbind) =>
       @unbind = unbind
       @$scope.gameOn = true
